@@ -1,4 +1,4 @@
-# replicon-gen2
+# toggl
 Integrate with Toggl's API
 
 This is an extract of the Toggl classes that are used in [lazyguru/timelog](https://github.com/lazyguru/timelog)
