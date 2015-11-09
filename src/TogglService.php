@@ -16,6 +16,7 @@ class TogglService extends BaseService
      * @var string
      */
     public $user_agent = 'Timelog';
+
     /**
      * @var int
      */
@@ -23,6 +24,7 @@ class TogglService extends BaseService
 
     /**
      * Initialize class
+     *
      * @param LoggerInterface $log
      * @param $workspace
      * @param $api_token
@@ -37,6 +39,8 @@ class TogglService extends BaseService
     }
 
     /**
+     * Persists a time entry to the Toggl API
+     *
      * @param TimeEntry $entry
      * @return TimeEntry
      */
@@ -111,6 +115,13 @@ class TogglService extends BaseService
         return $timeEntries;
     }
 
+    /**
+     * Process the response from Toggl to create a TimeEntry object
+     *
+     * @param array $response API response
+     *
+     * @return array
+     */
     protected function processTogglResponse($response)
     {
         // We only need to do something if results are paginated

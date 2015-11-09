@@ -14,6 +14,15 @@ class TimeEntry
     protected $billable = false;
     protected $duration = 0;
 
+    /**
+     * Constructor
+     *
+     * @param TogglService $service Access to the Toggl API
+     * @param string $id            ID of this task
+     * @param string $client        Client name for task
+     * @param string $project       Name of project for task
+     * @param string $description   Task detail
+     */
     public function __construct(TogglService $service, $id, $client, $project, $description)
     {
         $this->service = $service;
@@ -24,6 +33,8 @@ class TimeEntry
     }
 
     /**
+     * Returns the internal task ID
+     *
      * @return string
      */
     public function getTask()
@@ -32,6 +43,10 @@ class TimeEntry
     }
 
     /**
+     * Sets the internal task ID for this task.
+     * Task is determineed by concatenating project and
+     * task code
+     *
      * @param string $task
      */
     public function setTask($task)
@@ -45,6 +60,8 @@ class TimeEntry
     }
 
     /**
+     * Returns the ticket number for the task
+     *
      * @return string
      */
     public function getTicket()
@@ -53,6 +70,8 @@ class TimeEntry
     }
 
     /**
+     * Sets the ticket number for the task
+     *
      * @param string $ticket
      */
     public function setTicket($ticket)
@@ -61,6 +80,8 @@ class TimeEntry
     }
 
     /**
+     * Get that task detail
+     *
      * @return string
      */
     public function getDescription()
@@ -69,6 +90,8 @@ class TimeEntry
     }
 
     /**
+     * Sets the task detail
+     *
      * @param string $description
      */
     public function setDescription($description)
@@ -77,6 +100,8 @@ class TimeEntry
     }
 
     /**
+     * Return the client name
+     *
      * @return string
      */
     public function getClient()
@@ -85,6 +110,8 @@ class TimeEntry
     }
 
     /**
+     * Sets the client name
+     *
      * @param string $client
      */
     public function setClient($client)
@@ -93,6 +120,8 @@ class TimeEntry
     }
 
     /**
+     * Return the project for the task
+     *
      * @return string
      */
     public function getProject()
@@ -101,6 +130,8 @@ class TimeEntry
     }
 
     /**
+     * Sets the project
+     *
      * @param string $project
      */
     public function setProject($project)
@@ -109,6 +140,8 @@ class TimeEntry
     }
 
     /**
+     * Returns an array of tags associated to the task
+     *
      * @return array
      */
     public function getTags()
@@ -117,6 +150,8 @@ class TimeEntry
     }
 
     /**
+     * Sets the internal array of tags for the task
+     *
      * @param array $tags
      */
     public function setTags($tags)
@@ -125,6 +160,8 @@ class TimeEntry
     }
 
     /**
+     * Sets the duration timestamp of the task
+     *
      * @param int $dur
      */
     public function setDurationTime($dur)
@@ -133,6 +170,8 @@ class TimeEntry
     }
 
     /**
+     * Returns the duration timestamp of the task
+     *
      * @return int
      */
     public function getDurationTime()
@@ -141,6 +180,8 @@ class TimeEntry
     }
 
     /**
+     * Determines if the task has been logged against ticket system
+     *
      * @return boolean
      */
     public function isLogged()
@@ -149,6 +190,8 @@ class TimeEntry
     }
 
     /**
+     * Sets if the task has been logged against ticket system
+     *
      * @param boolean $logged
      */
     public function setLogged($logged)
@@ -157,6 +200,8 @@ class TimeEntry
     }
 
     /**
+     * Determines if the task is a billable task
+     *
      * @return boolean
      */
     public function isBillable()
@@ -165,6 +210,8 @@ class TimeEntry
     }
 
     /**
+     * Sets if the task is a billable task
+     *
      * @param boolean $billable
      */
     public function setBillable($billable)
@@ -173,7 +220,9 @@ class TimeEntry
     }
 
     /**
-     * @return int
+     * Returns the duration of the task in hours
+     *
+     * @return float
      */
     public function getDuration()
     {
@@ -181,7 +230,9 @@ class TimeEntry
     }
 
     /**
-     * @param int $duration
+     * Sets the duration timestamp of the task in hours
+     *
+     * @param float $duration
      */
     public function setDuration($duration)
     {
@@ -189,6 +240,8 @@ class TimeEntry
     }
 
     /**
+     * Retunrs the id of the task
+     *
      * @return int
      */
     public function getId()
@@ -197,6 +250,8 @@ class TimeEntry
     }
 
     /**
+     * Adds a tag to the internal tag array
+     *
      * @param string $tag
      */
     public function addTag($tag)
@@ -205,6 +260,12 @@ class TimeEntry
         $this->processTags();
     }
 
+    /**
+     * Processes an array of tags to find the ticket number
+     * as well as other internally used tags
+     *
+     * @param array $tags An array of tags to process
+     */
     public function processTags($tags = null)
     {
         if (empty($tags)) {
@@ -224,6 +285,8 @@ class TimeEntry
     }
 
     /**
+     * Calls the Toggl API to persist this time entry
+     *
      * @return TimeEntry
      */
     public function save()
@@ -232,6 +295,8 @@ class TimeEntry
     }
 
     /**
+     * Returns the entry date of this task
+     *
      * @return mixed
      */
     public function getEntryDate()
@@ -240,6 +305,8 @@ class TimeEntry
     }
 
     /**
+     * Sets the entry date of this task
+     *
      * @param mixed $entry_date
      */
     public function setEntryDate($entry_date)
