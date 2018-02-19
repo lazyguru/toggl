@@ -89,9 +89,8 @@ class TogglService extends BaseService
         }
         $this->uri = 'https://toggl.com/reports/api/v2/details?user_agent=' . $this->user_agent . '&since=' . $startdate . '&until=' . $enddate . '&workspace_id=' . $this->workspace_id;
 
-        $data = [];
-        $data = json_encode($data);
-
+        $data = null;
+        
         $response = $this->processRequest($data, self::GET);
         $this->_handleError($data, $response);
         $toggl_entries = $this->processTogglResponse($response);
